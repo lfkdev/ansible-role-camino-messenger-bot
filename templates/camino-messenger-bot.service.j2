@@ -1,0 +1,12 @@
+[Unit]
+Description=Camino Messenger Bot - {{ bot.name }}
+After=network.target
+
+[Service]
+User={{ camino_bot_user }}
+ExecStart={{ camino_bot_binary_dest }} --config {{ camino_config_path }}/{{ bot.name }}.yaml
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

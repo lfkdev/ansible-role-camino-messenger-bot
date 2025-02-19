@@ -1,0 +1,46 @@
+developer_mode: {{ bot.camino_messenger_bot_developer_mode | default(camino_messenger_bot_developer_mode) }}
+response_timeout: {{ bot.camino_messenger_bot_response_timeout | default(camino_messenger_bot_response_timeout) }}
+booking_token_address: {{ bot.camino_messenger_bot_booking_token_address | default(camino_messenger_bot_booking_token_address) }}
+chain_rpc_url: {{ bot.camino_messenger_bot_chain_rpc_url | default(camino_messenger_bot_chain_rpc_url) }}
+
+bot_key: {{ bot.camino_messenger_bot_bot_key | default(camino_messenger_bot_bot_key) }}
+cm_account_address: {{ bot.camino_messenger_bot_cm_account_address | default(camino_messenger_bot_cm_account_address) }}
+
+cheque_expiration_time: {{ bot.camino_messenger_bot_cheque_expiration_time | default(camino_messenger_bot_cheque_expiration_time) }}
+min_cheque_duration_until_expiration: {{ bot.camino_messenger_bot_min_cheque_duration_until_expiration | default(camino_messenger_bot_min_cheque_duration_until_expiration) }}
+cash_in_period: {{ bot.camino_messenger_bot_cash_in_period | default(camino_messenger_bot_cash_in_period) }}
+network_fee_recipient_bot_address: {{ bot.camino_messenger_bot_network_fee_recipient_bot_address | default(camino_messenger_bot_network_fee_recipient_bot_address) }}
+network_fee_recipient_cm_account: {{ bot.camino_messenger_bot_network_fee_recipient_cm_account | default(camino_messenger_bot_network_fee_recipient_cm_account) }}
+
+db:
+  migrations_path: {{ bot.camino_messenger_bot_db_migrations_path | default(camino_messenger_bot_db_migrations_path) }}
+  path: {{ bot.camino_messenger_bot_db_path | default(camino_messenger_bot_db_path) }}
+
+matrix:
+  host: {{ bot.camino_messenger_bot_matrix_host | default(camino_messenger_bot_matrix_host) }}
+
+{% if bot.camino_messenger_bot_partner_plugin_enabled | default(camino_messenger_bot_partner_plugin_enabled) %}
+partner_plugin:
+  enabled: {{ bot.camino_messenger_bot_partner_plugin_enabled | default(camino_messenger_bot_partner_plugin_enabled) }}
+  host: {{ bot.camino_messenger_bot_partner_plugin_host | default(camino_messenger_bot_partner_plugin_host) }}
+  unencrypted: {{ bot.camino_messenger_bot_partner_plugin_unencrypted | default(camino_messenger_bot_partner_plugin_unencrypted) }}
+  ca_file: {{ bot.camino_messenger_bot_partner_plugin_ca_file | default(camino_messenger_bot_partner_plugin_ca_file) }}
+{% endif %}
+
+{% if bot.camino_messenger_bot_rpc_server_enabled | default(camino_messenger_bot_rpc_server_enabled) %}
+rpc_server:
+  enabled: {{ bot.camino_messenger_bot_rpc_server_enabled | default(camino_messenger_bot_rpc_server_enabled) }}
+  port: {{ bot.camino_messenger_bot_rpc_server_port | default(camino_messenger_bot_rpc_server_port) }}
+  unencrypted: {{ bot.camino_messenger_bot_rpc_server_unencrypted | default(camino_messenger_bot_rpc_server_unencrypted) }}
+  cert_file: {{ bot.camino_messenger_bot_rpc_server_cert_file | default(camino_messenger_bot_rpc_server_cert_file) }}
+  key_file: {{ bot.camino_messenger_bot_rpc_server_key_file | default(camino_messenger_bot_rpc_server_key_file) }}
+{% endif %}
+
+{% if bot.camino_messenger_bot_tracing_enabled | default(camino_messenger_bot_tracing_enabled) %}
+tracing:
+  cert_file: {{ bot.camino_messenger_bot_tracing_cert_file | default(camino_messenger_bot_tracing_cert_file) }}
+  enabled: {{ bot.camino_messenger_bot_tracing_enabled | default(camino_messenger_bot_tracing_enabled) }}
+  host: {{ bot.camino_messenger_bot_tracing_host | default(camino_messenger_bot_tracing_host) }}
+  insecure: {{ bot.camino_messenger_bot_tracing_insecure | default(camino_messenger_bot_tracing_insecure) }}
+  key_file: {{ bot.camino_messenger_bot_tracing_key_file | default(camino_messenger_bot_tracing_key_file) }}
+{% endif %}

@@ -1,0 +1,11 @@
+---
+- name: Reload systemd
+  ansible.builtin.systemd:
+    daemon_reload: yes
+
+- name: Restart Camino Messenger Bots
+  ansible.builtin.systemd:
+    name: "{{ item.name }}.service"
+    state: restarted
+    daemon_reload: true
+  with_items: "{{ camino_bots }}"

@@ -1,0 +1,81 @@
+---
+- name: Update apt cache if older than one day
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 86400
+  changed_when: false
+
+- name: Ensure libolm-dev is installed
+  ansible.builtin.apt:
+    name: libolm-dev
+    state: present
+    update_cache: true
+
+- name: Ensure camino_bot_user exists
+  ansible.builtin.user:
+    name: "{{ camino_bot_user }}"
+    state: present
+
+- name: Download Camino Messenger Bot tarball
+  ansible.builtin.get_url:
+    url: "{{ camino_bot_download_url }}"
+    dest: "{{ camino_bot_tarball_dest }}"
+    mode: '0644'
+
+- name: Extract Camino Messenger Bot tarball if new version available
+  ansible.builtin.unarchive:
+    src: "/tmp/camino-messenger-bot.tar.gz"
+    dest: "{{ camino_bot_extract_path }}"
+    remote_src: true
+    creates: "{{ camino_bot_extract_path }}/camino-messenger-bot-{{ camino_bot_version }}"
+
+- name: Rename binary to include version
+  ansible.builtin.command: >
+    mv {{ camino_bot_extract_path }}/camino-messenger-bot
+       {{ camino_bot_extract_path }}/camino-messenger-bot-{{ camino_bot_version }}
+  args:
+    creates: "{{ camino_bot_extract_path }}/camino-messenger-bot-{{ camino_bot_version }}"
+
+- name: Install Camino Messenger Bot
+  ansible.builtin.copy:
+    src: "{{ camino_bot_extract_path }}/{{ camino_bot_binary_src }}-{{ camino_bot_version }}"
+    dest: "{{ camino_bot_binary_dest }}"
+    remote_src: true
+    mode: '0755'
+    owner: "{{ camino_bot_user }}"
+    group: "{{ camino_bot_user }}"
+    backup: true
+  notify: Restart Camino Messenger Bots
+
+- name: Create config dir
+  ansible.builtin.file:
+    path: "{{ camino_config_path }}"
+    state: directory
+    mode: '0755'
+
+- name: Render bot configuration templates
+  template:
+    src: camino-messenger-bot.yaml.j2
+    dest: "{{ camino_config_path }}/{{ item.name }}.yaml"
+  loop: "{{ camino_bots }}"
+  vars:
+    bot: "{{ item }}"
+
+- name: Loop through Camino Messenger Bot definitions and create systemd unit files
+  ansible.builtin.template:
+    src: camino-messenger-bot.service.j2
+    dest: "{{ camino_bot_systemd_path }}/{{ bot.name }}.service"
+    mode: '0644'
+  loop: "{{ camino_bots }}"
+  loop_control:
+    loop_var: bot
+  notify: Reload systemd
+
+- name: Enable and start Camino Messenger Bot services
+  ansible.builtin.systemd:
+    name: "{{ bot.name }}.service"
+    state: started
+    enabled: yes
+  loop: "{{ camino_bots }}"
+  loop_control:
+    loop_var: bot

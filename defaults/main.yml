@@ -1,0 +1,71 @@
+---
+camino_bot_version: "v10.1.0"
+camino_bot_download_url: "https://github.com/chain4travel/camino-messenger-bot/releases/download/{{ camino_bot_version }}/camino-messenger-bot-linux-amd64-{{ camino_bot_version }}.tar.gz"
+
+camino_bot_tarball_dest: "/tmp/camino-messenger-bot.tar.gz"
+camino_bot_extract_path: "/tmp"
+
+camino_bot_binary_src: "camino-messenger-bot"
+camino_bot_binary_dest: "/usr/local/bin/camino-messenger-bot"
+camino_bot_systemd_path: "/etc/systemd/system"
+camino_config_path: "/etc/camino-messenger-bot"
+camino_bot_user: "camino"
+
+# unitd services this will create: camino-messenger-bot-{{ bot.name }}.service
+# you can overwrite any value needed per bot
+# EXAMPLES:
+camino_bots:
+  - name: camino-bot-distributor
+    camino_messenger_bot_bot_key: "YOUR_PRIVATE_KEY_HEX"
+    camino_messenger_bot_cm_account_address: "0xYOUR_CM_ACCOUNT_ADDRESS"
+    camino_messenger_bot_developer_mode: false
+    camino_messenger_bot_tracing_enabled: false
+    camino_messenger_bot_rpc_server_enabled: true
+    camino_messenger_bot_partner_plugin_enabled: false
+
+  - name: camino-bot-supplier
+    camino_messenger_bot_bot_key: "YOUR_PRIVATE_KEY_HEX"
+    camino_messenger_bot_cm_account_address: "0xYOUR_CM_ACCOUNT_ADDRESS"
+    camino_messenger_bot_developer_mode: false
+    camino_messenger_bot_tracing_enabled: false
+    camino_messenger_bot_rpc_server_enabled: false
+    camino_messenger_bot_partner_plugin_enabled: true
+
+
+
+# defaults (used if bot specific values are not set)
+camino_messenger_bot_developer_mode: true
+camino_messenger_bot_response_timeout: 10000
+camino_messenger_bot_booking_token_address: "0xe55E387F5474a012D1b048155E25ea78C7DBfBBC"
+camino_messenger_bot_chain_rpc_url: "wss://columbus.camino.network/ext/bc/C/ws"
+
+camino_messenger_bot_bot_key: "YOUR_PRIVATE_KEY_HEX"
+camino_messenger_bot_cm_account_address: "0xYOUR_CM_ACCOUNT_ADDRESS"
+
+camino_messenger_bot_cheque_expiration_time: 18144000
+camino_messenger_bot_min_cheque_duration_until_expiration: 15552000
+camino_messenger_bot_cash_in_period: 86400
+camino_messenger_bot_network_fee_recipient_bot_address: "0xff6BAC3d972680515cbB59fCB6Db6deB13Eb0E91"
+camino_messenger_bot_network_fee_recipient_cm_account: "0xF6bA5c68A505559c170dC7a30448Ed64D8b9Bc3B"
+
+camino_messenger_bot_db_migrations_path: "file://./migrations"
+camino_messenger_bot_db_path: "distributor-bot-db"
+
+camino_messenger_bot_matrix_host: "messenger.chain4travel.com"
+
+camino_messenger_bot_partner_plugin_enabled: false
+camino_messenger_bot_partner_plugin_host: "localhost:50051"
+camino_messenger_bot_partner_plugin_unencrypted: true
+camino_messenger_bot_partner_plugin_ca_file: "ca-cert.pem"
+
+camino_messenger_bot_rpc_server_enabled: true
+camino_messenger_bot_rpc_server_port: 9090
+camino_messenger_bot_rpc_server_unencrypted: true
+camino_messenger_bot_rpc_server_cert_file: "server-cert.pem"
+camino_messenger_bot_rpc_server_key_file: "server-key.pem"
+
+camino_messenger_bot_tracing_cert_file: "server-cert.pem"
+camino_messenger_bot_tracing_enabled: false
+camino_messenger_bot_tracing_host: "localhost:4317"
+camino_messenger_bot_tracing_insecure: true
+camino_messenger_bot_tracing_key_file: "server-key.pem"
