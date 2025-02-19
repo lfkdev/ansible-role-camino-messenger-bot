@@ -4,11 +4,11 @@ name: Molecule / Lint
 'on':
   push:
     branches:
-      - main
+      - master
       - develop
   pull_request:
     branches:
-      - main
+      - master
 
 defaults:
   run:
