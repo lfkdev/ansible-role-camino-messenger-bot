@@ -104,6 +104,7 @@ camino_bots:
     camino_messenger_bot_tracing_enabled: false
     camino_messenger_bot_rpc_server_enabled: false
     camino_messenger_bot_partner_plugin_enabled: true
+```
 
 ### Dependencies
 - Currently, only the Debian family is supported (feel free to submit a PR for RedHat).
