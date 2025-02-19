@@ -31,15 +31,15 @@ These variables are used to generate the bot configuration file. They support pe
 | ---------------------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | `camino_messenger_bot_developer_mode`                      | `true`                                                         | Enable lower level logging for development.                                              |
 | `camino_messenger_bot_response_timeout`                    | `10000`                                                        | Timeout (in ms) for responses to messages via Matrix.                                    |
-| `camino_messenger_bot_booking_token_address`               | `"0xe55E387F5474a012D1b048155E25ea78C7DBfBBC"`                   | Address used for minting and buying Booking Tokens.                                      |
+| `camino_messenger_bot_booking_token_address`               | `"0x123"`                   | Address used for minting and buying Booking Tokens.                                      |
 | `camino_messenger_bot_chain_rpc_url`                       | `"wss://columbus.camino.network/ext/bc/C/ws"`                   | C-Chain RPC URL.                                                                         |
 | `camino_messenger_bot_bot_key`                             | `"YOUR_PRIVATE_KEY_HEX"`                                         | Bot’s private key (hex, without 0x prefix).                                               |
 | `camino_messenger_bot_cm_account_address`                  | `"0xYOUR_CM_ACCOUNT_ADDRESS"`                                    | Bot’s CM account address.                                                                |
 | `camino_messenger_bot_cheque_expiration_time`              | `18144000`                                                     | Cheque expiration time in seconds.                                                       |
 | `camino_messenger_bot_min_cheque_duration_until_expiration`  | `15552000`                                                     | Minimum duration until cheque expiration.                                                |
 | `camino_messenger_bot_cash_in_period`                      | `86400`                                                        | Cash-in period (in seconds).                                                             |
-| `camino_messenger_bot_network_fee_recipient_bot_address`   | `"0xff6BAC3d972680515cbB59fCB6Db6deB13Eb0E91"`                   | Matrix application service bot address.                                                  |
-| `camino_messenger_bot_network_fee_recipient_cm_account`    | `"0xF6bA5c68A505559c170dC7a30448Ed64D8b9Bc3B"`                   | Matrix application service CM account address.                                           |
+| `camino_messenger_bot_network_fee_recipient_bot_address`   | `"0x123"`                   | Matrix application service bot address.                                                  |
+| `camino_messenger_bot_network_fee_recipient_cm_account`    | `"0x123"`                   | Matrix application service CM account address.                                           |
 | `camino_messenger_bot_db_migrations_path`                  | `"file://./migrations"`                                          | Path to the migrations directory containing SQL scripts.                                 |
 | `camino_messenger_bot_db_path`                             | `"distributor-bot-db"`                                           | Path to the database directory.                                                          |
 | `camino_messenger_bot_matrix_host`                         | `"messenger.chain4travel.com"`                                   | Matrix server hostname.                                                                    |
@@ -90,11 +90,20 @@ You can override any of the configuration variables on a per‑bot basis. For ex
 ```yaml
 camino_bots:
   - name: camino-bot-distributor
-    config: camino-messenger-bot-distributor-columbus.yaml
+    camino_messenger_bot_bot_key: "YOUR_PRIVATE_KEY_HEX"
+    camino_messenger_bot_cm_account_address: "0xYOUR_CM_ACCOUNT_ADDRESS"
+    camino_messenger_bot_developer_mode: false
     camino_messenger_bot_tracing_enabled: false
+    camino_messenger_bot_rpc_server_enabled: true
+    camino_messenger_bot_partner_plugin_enabled: false
+
   - name: camino-bot-supplier
-    config: camino-messenger-bot-supplier-columbus.yaml
-    camino_messenger_bot_tracing_enabled: true
+    camino_messenger_bot_bot_key: "YOUR_PRIVATE_KEY_HEX"
+    camino_messenger_bot_cm_account_address: "0xYOUR_CM_ACCOUNT_ADDRESS"
+    camino_messenger_bot_developer_mode: false
+    camino_messenger_bot_tracing_enabled: false
+    camino_messenger_bot_rpc_server_enabled: false
+    camino_messenger_bot_partner_plugin_enabled: true
 
 ### Dependencies
 - Currently, only the Debian family is supported (feel free to submit a PR for RedHat).
