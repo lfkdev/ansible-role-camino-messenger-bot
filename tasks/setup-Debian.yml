@@ -22,7 +22,7 @@
     dest: "{{ camino_bot_tarball_dest }}"
     mode: '0644'
 
-- name: Extract Camino Messenger Bot tarball if new version available
+- name: Extract Camino Messenger Bot tarball
   ansible.builtin.unarchive:
     src: "/tmp/camino-messenger-bot.tar.gz"
     dest: "{{ camino_bot_extract_path }}"
