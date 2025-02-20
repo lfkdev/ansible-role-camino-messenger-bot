@@ -1,6 +1,6 @@
 ---
 camino_bot_version: "v10.0.0"
-camino_bot_download_url: >
+camino_bot_download_url: >-
   https://github.com/chain4travel/camino-messenger-bot/releases/download/\
   {{ camino_bot_version }}\
   /camino-messenger-bot-linux-amd64-\

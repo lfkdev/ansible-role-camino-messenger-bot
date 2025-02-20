@@ -117,4 +117,4 @@ camino_bots:
 ```
 
 ### License
-MIT
+GPLv3
