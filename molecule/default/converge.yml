@@ -9,13 +9,13 @@
     - name: Check if Camino Messenger Bot systemd service files exist
       ansible.builtin.stat:
         path: "/etc/systemd/system/{{ bot.name }}.service"
-        loop: "{{ camino_bots }}"
-        loop_control:
-          loop_var: bot
+      loop: "{{ camino_bots }}"
+      loop_control:
+        loop_var: bot
 
     - name: Check if Camino Messenger Bot config files exist
       ansible.builtin.stat:
         path: "{{ camino_config_path }}/{{ bot.name }}.yaml"
-        loop: "{{ camino_bots }}"
-        loop_control:
-          loop_var: bot
+      loop: "{{ camino_bots }}"
+      loop_control:
+        loop_var: bot
