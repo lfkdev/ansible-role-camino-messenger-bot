@@ -1,6 +1,6 @@
 # Ansible Role: Camino-Messenger-Bot
 
-[![CI](https://github.com/lfkdev/ansible-role-messenger-bot/actions/workflows/ci.yml/badge.svg)](https://github.com/lfkdev/ansible-role-camino-messenger-bot/actions/workflows/ci.yml)
+[![Molecule / Lint](https://github.com/lfkdev/ansible-role-messenger-bot/actions/workflows/ci.yml/badge.svg)](https://github.com/lfkdev/ansible-role-camino-messenger-bot/actions/workflows/ci.yml)
 
 An Ansible Role that installs and configures Camino Messenger Bot(s) on linux servers.
 
