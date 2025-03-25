@@ -4,6 +4,7 @@ After=network.target
 
 [Service]
 User={{ camino_bot_user }}
+WorkingDir={{ camino_bot_working_dir }}
 ExecStart={{ camino_bot_binary_dest }} --config {{ camino_config_path }}/{{ bot.name }}.yaml
 Restart=always
 RestartSec=5

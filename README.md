@@ -1,6 +1,6 @@
 # Ansible Role: Camino-Messenger-Bot
 
-![Molecule / Lint](https://img.shields.io/github/actions/workflow/status/lfkdev/ansible-role-camino-messenger-bot/ci.yml)
+[![CI](https://github.com/lfkdev/ansible-role-messenger-bot/actions/workflows/ci.yml/badge.svg)](https://github.com/lfkdev/ansible-role-camino-messenger-bot/actions/workflows/ci.yml)
 
 An Ansible Role that installs and configures Camino Messenger Bot(s) on linux servers.
 
@@ -104,7 +104,6 @@ camino_bots:
     camino_messenger_bot_tracing_enabled: false
     camino_messenger_bot_rpc_server_enabled: false
     camino_messenger_bot_partner_plugin_enabled: true
-```
 
 ### Dependencies
 - Currently, only the Debian family is supported (feel free to submit a PR for RedHat).
@@ -117,4 +116,4 @@ camino_bots:
 ```
 
 ### License
-GPLv3
+MIT
