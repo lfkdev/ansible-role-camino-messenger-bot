@@ -1,6 +1,6 @@
 # Ansible Role: Camino-Messenger-Bot
 
-[![CI](https://github.com/lfkdev/ansible-role-messenger-bot/actions/workflows/ci.yml/badge.svg)](https://github.com/lfkdev/ansible-role-camino-messenger-bot/actions/workflows/ci.yml)
+![Molecule/Lint](https://img.shields.io/github/actions/workflow/status/lfkdev/ansible-role-camino-messenger-bot/ci.yml)
 
 An Ansible Role that installs and configures Camino Messenger Bot(s) on linux servers.
 
@@ -14,7 +14,7 @@ None.
 | Variable                      | Default Value                                                               | Description                                                                   |
 | ----------------------------- | --------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `camino_bot_version`          | `"v10.1.0"`                                                                 | The version of the Camino Messenger Bot to download.                          |
-| `camino_bot_download_url`     | `"https://github.com/chain4travel/camino-messenger-bot/releases/download/{{ camino_bot_version }}/camino-messenger-bot-linux-amd64-{{ camino_bot_version }}.tar.gz"` | URL to download the bot tarball.                                              |
+| `camino_bot_download_url`     | `"https://github.com/chain4travel/camino-messenger-bot/releases/download/{}/camino-messenger-bot-linux-amd64-{{ camino_bot_version }}.tar.gz"` | URL to download the bot tarball.                                              |
 | `camino_bot_tarball_dest`     | `"/tmp/camino-messenger-bot.tar.gz"`                                        | Temporary destination path for the downloaded tarball.                      |
 | `camino_bot_extract_path`     | `"/tmp"`                                                                    | Directory where the tarball will be extracted.                              |
 | `camino_bot_binary_src`       | `"camino-messenger-bot"`                                                    | The name of the binary inside the tarball.                                  |
