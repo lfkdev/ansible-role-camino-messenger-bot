@@ -16,6 +16,13 @@
     name: "{{ camino_bot_user }}"
     state: present
 
+- name: Ensure camino_bot_working_dir exists
+  ansible.builtin.file:
+    path: "{{ camino_bot_working_dir }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ camino_bot_user }}"
+
 - name: Download Camino Messenger Bot tarball
   ansible.builtin.get_url:
     url: "{{ camino_bot_download_url }}"
@@ -43,7 +50,6 @@
     remote_src: true
     mode: '0755'
     owner: "{{ camino_bot_user }}"
-    group: "{{ camino_bot_user }}"
     backup: true
   notify: Restart Camino Messenger Bots
 
@@ -52,6 +58,7 @@
     path: "{{ camino_config_path }}"
     state: directory
     mode: '0755'
+    owner: "{{ camino_bot_user }}"
 
 - name: Render bot configuration templates
   template:
@@ -65,6 +72,7 @@
   ansible.builtin.copy:
     src: "migrations"
     dest: "{{ camino_bot_working_dir }}"
+    owner: "{{ camino_bot_user }}"
 
 - name: Loop through Camino Messenger Bot definitions and create systemd unit files
   ansible.builtin.template:
